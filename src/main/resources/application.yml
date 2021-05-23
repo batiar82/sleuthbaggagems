@@ -1,0 +1,17 @@
+server:
+  port : 8081
+
+spring:
+  application:
+    name: ms-demo
+  output:
+    ansi:
+      enabled: ALWAYS
+  sleuth:
+    baggage:
+      correlation-fields: session-id
+      remote-fields: session-id
+
+logging:
+  pattern:
+    level: "%5p [${spring.zipkin.service.name:${spring.application.name:}},%X{traceId:-},%X{spanId:-},%X{session-id:-}]"
